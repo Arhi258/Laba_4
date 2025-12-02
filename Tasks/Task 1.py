@@ -13,5 +13,9 @@ if __name__ == '__main__':
         print("Неверный размер списка", file=sys.stderr)
         exit(1)
 
-    s = sum(a for a in a_list if 3 < abs(a) < 8)
+    s = 0
+    for a in a_list:
+        if 3 < a < 8:
+            s += a
+
     print(f"Сумма элементов больших 3 и меньших 8 равна: {s}")

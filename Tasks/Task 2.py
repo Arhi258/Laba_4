@@ -14,21 +14,21 @@ if __name__ == '__main__':
     right_border = float(input("Правая граница списка: "))
 
     # Проверка корректности границ
-    if left_border == right_border:
+    if left_border >= right_border or left_border < 0 or right_border < 0:
         print("Неверно введённые границы", file=sys.stderr)
         exit(1)
 
     print(f"Максимальный элемент списка до сжатия: {max(a_list)}")
 
     # Вычисление индекса последнего положительного элемента
-    stop_index = 0
-    for idx in reversed(range(len(a_list))):
-        if a_list[idx] > 0:
-            stop_index = idx + 1
+    stop_index = len(a_list) - 1
+    for item in reversed(a_list):
+        if item > 0:
             break
+        stop_index -= 1
 
     # Вычисление суммы списка до последнего положительного элемента
-    total_sum = sum(a_list[:stop_index])
+    total_sum = sum(a_list[:stop_index + 1])
     print(
         f"Сумма элементов списка до сжатия, расположенных до "
         f"последнего положительного элемента: {total_sum}"
@@ -39,9 +39,9 @@ if __name__ == '__main__':
     processed = 0
     i = 0
     while processed < n:
-        if left_border <= a_list[i] <= right_border:
+        if left_border <= abs(a_list[i]) <= right_border:
             a_list.pop(i)
-            a_list.append(0)
+            a_list.append(0.0)
         else:
             i += 1
         processed += 1
