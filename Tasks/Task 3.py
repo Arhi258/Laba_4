@@ -9,8 +9,10 @@ if __name__ == '__main__':
 
     # Вычисление индекса начала вывода
     start_idx = 0
-    for i in range(len(a_tuple) - 1):
-        if a_tuple[i] == a_tuple[i + 1]:
+    a_start = a_tuple[1:]
+    a_end = a_tuple[:-1]
+    for i, (a1, a2) in enumerate(zip(a_start, a_end)):
+        if a1 == a2:
             start_idx = i + 2
             break
 
